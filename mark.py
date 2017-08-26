@@ -29,18 +29,13 @@ def calculatePixelCode(x, y, bKey, hilbert):
     # Determine the coordinate of dist + 1
     currCoord = hilbert.coordinates_from_distance(dist)
     nextCoord = hilbert.coordinates_from_distance(dist+1)
-    if(nextCoord[0] > x):
-        code[1] = 0
-        code[2] = 0
-    if(nextCoord[1] > y):
-        code[1] = 0
+
+    if(nextCoord[0] == x):
         code[2] = 1
-    if(nextCoord[0] < x):
-        code[1] = 1
+        code[1] = (y - nextCoord[1] + 1)/2
+    if(nextCoord[1] == y):
         code[2] = 0
-    if(nextCoord[1] < y):
-        code[1] = 1
-        code[2] = 1
+        code[1] = (x - nextCoord[0] + 1)/2
 
     print("Code=" + str(code))
     print("(" + str(x) + "," + str(y) + ")")
